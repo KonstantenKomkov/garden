@@ -41,7 +41,18 @@ make preview   # http://localhost:4321/garden/
 
 ## Деплой
 
-При пуше в `main` workflow `.github/workflows/deploy.yml` собирает проект и публикует `dist/` на GitHub Pages. В настройках репозитория включите **Pages → Source: GitHub Actions**.
+При пуше в `main` workflow `.github/workflows/deploy.yml` собирает проект и публикует `dist/` на GitHub Pages.
+
+### Первый запуск (обязательно)
+
+1. Запушьте код в `main` и дождитесь успешного workflow **Deploy to GitHub Pages** (он создаст ветку `gh-pages`).
+2. [Settings → Pages](https://github.com/KonstantenKomkov/garden/settings/pages):
+   - **Source:** Deploy from a branch
+   - **Branch:** `gh-pages` → `/ (root)` → **Save**
+   - **Custom domain:** оставить **пустым** (не вводить `github.io` и не URL с `/garden/`)
+3. Через 1–2 минуты откройте <https://konstantenkomkov.github.io/garden/>
+
+Если **Save** неактивна — очистите Custom domain (крестик) и выберите ветку `gh-pages` (появится после первого успешного деплоя).
 
 ## Контакты
 
