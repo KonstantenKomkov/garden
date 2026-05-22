@@ -1,0 +1,88 @@
+---
+import { features } from '../site';
+
+const icons: Record<string, string> = {
+  garden: 'M12 3C9 7 5 8 5 13a7 7 0 0 0 14 0c0-5-4-6-7-10z',
+  beds: 'M4 20h16M6 16h12M8 12h8M10 8h4',
+  plan: 'M5 5h14v14H5z M9 3v4 M15 3v4 M5 11h14',
+  plants: 'M12 22V12M8 14c-4-1-5-5-2-7s7-1 6 4M16 14c4-1 5-5 2-7s-7-1-6 4',
+  weather: 'M17.5 19a4.5 4.5 0 0 0 0-9 5.5 5.5 0 0 0-10.8 1.5A3.5 3.5 0 0 0 6.5 19',
+  offline: 'M12 2v4M4.93 4.93l2.83 2.83M2 12h4M4.93 19.07l2.83-2.83M12 18v4M19.07 19.07l-2.83-2.83M18 12h4M19.07 4.93l-2.83 2.83',
+};
+---
+
+<section class="section features" id="features">
+  <div class="container">
+    <header class="section-header">
+      <p class="section-eyebrow">Возможности</p>
+      <h2 class="section-title">Всё для сада в одном приложении</h2>
+      <p class="section-lead">
+        «Сад» помогает спланировать участок, вести календарь работ и выбирать культуры с учётом
+        климата и погоды.
+      </p>
+    </header>
+    <ul class="features-grid">
+      {features.map((feature) => (
+        <li class="feature-card">
+          <div class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d={icons[feature.icon]} />
+            </svg>
+          </div>
+          <h3>{feature.title}</h3>
+          <p>{feature.description}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .features {
+    background: var(--brand-50);
+  }
+
+  .features-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .feature-card {
+    background: #fff;
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--ink-100);
+  }
+
+  .feature-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .feature-card p {
+    margin: 0;
+    color: var(--ink-500);
+    font-size: 0.95rem;
+  }
+
+  .feature-icon {
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    background: var(--brand-100);
+    color: var(--brand-600);
+    margin-bottom: 1rem;
+  }
+
+  .feature-icon svg {
+    width: 1.35rem;
+    height: 1.35rem;
+  }
+</style>

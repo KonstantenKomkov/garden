@@ -1,0 +1,66 @@
+---
+import { site } from '../site';
+
+const base = import.meta.env.BASE_URL;
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <span class="brand-wordmark footer-wordmark">{site.name}</span>
+      <p class="footer-tagline">{site.tagline}</p>
+    </div>
+    <nav class="footer-nav" aria-label="Юридические документы">
+      <a href={`${base}privacy/`}>Политика конфиденциальности</a>
+      <a href={`${base}terms/`}>Пользовательское соглашение</a>
+      <a href={`mailto:${site.supportEmail}`}>{site.supportEmail}</a>
+    </nav>
+    <p class="footer-copy">
+      © {year} «{site.name}». Приложение в разработке, скоро в магазинах.
+    </p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--surface-sunken);
+    border-top: 1px solid var(--ink-100);
+    padding: 3rem 0 2rem;
+  }
+
+  .footer-inner {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .footer-wordmark {
+    font-size: 1.5rem;
+    color: var(--brand-600);
+  }
+
+  .footer-tagline {
+    margin: 0.25rem 0 0;
+    color: var(--ink-500);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .footer-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 1.5rem;
+  }
+
+  .footer-nav a {
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .footer-copy {
+    margin: 0;
+    color: var(--ink-500);
+    font-size: 0.875rem;
+  }
+</style>

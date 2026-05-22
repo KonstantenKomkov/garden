@@ -1,0 +1,203 @@
+@font-face {
+  font-family: 'Manrope';
+  src: url('../assets/fonts/Manrope-VariableFont_wght.ttf') format('truetype');
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Philosopher';
+  src: url('../assets/fonts/Philosopher-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  --brand-700: #1e3f26;
+  --brand-600: #2f5d3a;
+  --brand-500: #3f7a4d;
+  --brand-400: #5c9a6b;
+  --brand-100: #dcede2;
+  --brand-50: #f1f8f3;
+  --harvest-500: #e08a3c;
+  --harvest-100: #fbe8d2;
+  --ink-900: #1a1f1b;
+  --ink-700: #3d453f;
+  --ink-500: #6b7468;
+  --ink-200: #d7dcd3;
+  --ink-100: #ecefe9;
+  --surface-sunken: #f4f6f4;
+  --hero-top: #173321;
+  --hero-mid: #245036;
+  --hero-bottom: #3f7a4d;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --shadow-card: 0 12px 40px rgba(26, 31, 27, 0.08);
+  --max-width: 1120px;
+  --font-sans: 'Manrope', system-ui, sans-serif;
+  --font-display: 'Philosopher', Georgia, serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ink-900);
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--brand-600);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  color: var(--brand-700);
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+  margin: 0 0 0.5em;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+.container {
+  width: min(100% - 2.5rem, var(--max-width));
+  margin-inline: auto;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.brand-wordmark {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.4rem;
+  border-radius: 999px;
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  background: var(--brand-600);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--brand-700);
+  color: #fff;
+}
+
+.btn-secondary {
+  background: #fff;
+  color: var(--brand-600);
+  border-color: var(--brand-200, var(--brand-100));
+  box-shadow: inset 0 0 0 1px var(--brand-100);
+}
+
+.btn-secondary:hover {
+  background: var(--brand-50);
+  color: var(--brand-700);
+}
+
+.section {
+  padding: 5rem 0;
+}
+
+.section-header {
+  text-align: center;
+  max-width: 40rem;
+  margin: 0 auto 3rem;
+}
+
+.section-eyebrow {
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brand-500);
+}
+
+.section-title {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+}
+
+.section-lead {
+  color: var(--ink-500);
+  font-size: 1.05rem;
+  margin-bottom: 0;
+}
+
+.legal-page h2 {
+  font-size: 1.25rem;
+  margin-top: 2rem;
+}
+
+.legal-page ul {
+  padding-left: 1.25rem;
+}
+
+.legal-page li {
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 3.5rem 0;
+  }
+}

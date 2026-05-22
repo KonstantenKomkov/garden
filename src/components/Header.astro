@@ -1,0 +1,85 @@
+---
+import { site } from '../site';
+
+const base = import.meta.env.BASE_URL;
+const nav = [
+  { href: `${base}#features`, label: 'Возможности' },
+  { href: `${base}#screenshots`, label: 'Скриншоты' },
+  { href: `${base}#support`, label: 'Поддержка' },
+];
+---
+
+<header class="header">
+  <div class="container header-inner">
+    <a class="logo" href={base}>
+      <img src={`${base}images/app-icon.png`} alt="" width="36" height="36" />
+      <span class="brand-wordmark">{site.name}</span>
+    </a>
+    <nav class="nav" aria-label="Основная навигация">
+      {nav.map((item) => (
+        <a href={item.href}>{item.label}</a>
+      ))}
+    </nav>
+    <a class="btn btn-primary header-cta" href={`${base}#support`}>Связаться</a>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--ink-100);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    min-height: 4rem;
+  }
+
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    text-decoration: none;
+    color: var(--ink-900);
+    font-size: 1.35rem;
+    margin-right: auto;
+  }
+
+  .logo img {
+    border-radius: 9px;
+    box-shadow: 0 2px 8px rgba(26, 31, 27, 0.12);
+  }
+
+  .nav {
+    display: flex;
+    gap: 1.25rem;
+  }
+
+  .nav a {
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--ink-700);
+  }
+
+  .nav a:hover {
+    color: var(--brand-600);
+  }
+
+  .header-cta {
+    padding: 0.6rem 1.1rem;
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 768px) {
+    .nav {
+      display: none;
+    }
+  }
+</style>

@@ -1,0 +1,188 @@
+---
+import { screenshots } from '../site';
+---
+
+<section class="section screenshots" id="screenshots">
+  <div class="container">
+    <header class="section-header">
+      <p class="section-eyebrow">Интерфейс</p>
+      <h2 class="section-title">Три главных раздела</h2>
+      <p class="section-lead">
+        Навигация как в приложении: План, Сад и Растения — всё под рукой на одном экране.
+      </p>
+    </header>
+    <ul class="screenshots-grid">
+      {screenshots.map((shot) => (
+        <li>
+          <article class={`screenshot-card screenshot-card--${shot.theme}`}>
+            <div class="screenshot-phone" aria-hidden="true">
+              <div class="screenshot-screen">
+                <span class="screenshot-tab">{shot.title}</span>
+                <div class="screenshot-mock">
+                  {shot.theme === 'plan' && (
+                    <>
+                      <div class="mock-row mock-row--accent" />
+                      <div class="mock-row" />
+                      <div class="mock-row" />
+                      <div class="mock-row mock-row--short" />
+                    </>
+                  )}
+                  {shot.theme === 'garden' && (
+                    <>
+                      <div class="mock-hero" />
+                      <div class="mock-chip" />
+                      <div class="mock-chip" />
+                    </>
+                  )}
+                  {shot.theme === 'plants' && (
+                    <>
+                      <div class="mock-search" />
+                      <div class="mock-grid">
+                        <span /><span /><span /><span />
+                      </div>
+                    </>
+                  )}
+                </div>
+              </div>
+            </div>
+            <h3>{shot.title}</h3>
+            <p>{shot.caption}</p>
+          </article>
+        </li>
+      ))}
+    </ul>
+    <p class="screenshots-note">
+      Скриншоты из макетов интерфейса. После публикации в сторах здесь появятся реальные снимки экранов.
+    </p>
+  </div>
+</section>
+
+<style>
+  .screenshots-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2rem;
+  }
+
+  .screenshot-card {
+    text-align: center;
+  }
+
+  .screenshot-card h3 {
+    font-size: 1.15rem;
+    margin-top: 1.25rem;
+  }
+
+  .screenshot-card p {
+    margin: 0;
+    color: var(--ink-500);
+    font-size: 0.95rem;
+  }
+
+  .screenshot-phone {
+    margin-inline: auto;
+    width: 200px;
+    padding: 0.5rem;
+    border-radius: 1.5rem;
+    background: var(--ink-900);
+    box-shadow: var(--shadow-card);
+  }
+
+  .screenshot-screen {
+    border-radius: 1.15rem;
+    background: var(--surface-sunken);
+    min-height: 320px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .screenshot-tab {
+    align-self: center;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--brand-600);
+    background: var(--brand-100);
+    padding: 0.25rem 0.65rem;
+    border-radius: 999px;
+  }
+
+  .screenshot-mock {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-top: 0.5rem;
+  }
+
+  .mock-row {
+    height: 2.5rem;
+    border-radius: 8px;
+    background: #fff;
+    border: 1px solid var(--ink-100);
+  }
+
+  .mock-row--accent {
+    background: var(--brand-100);
+    border-color: var(--brand-200, var(--brand-100));
+  }
+
+  .mock-row--short {
+    width: 65%;
+  }
+
+  .mock-hero {
+    height: 5rem;
+    border-radius: 12px;
+    background: linear-gradient(160deg, var(--hero-top), var(--hero-bottom));
+  }
+
+  .mock-chip {
+    height: 2rem;
+    border-radius: 8px;
+    background: #fff;
+    border: 1px solid var(--ink-100);
+  }
+
+  .mock-search {
+    height: 2rem;
+    border-radius: 999px;
+    background: #fff;
+    border: 1px solid var(--ink-100);
+  }
+
+  .mock-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    flex: 1;
+  }
+
+  .mock-grid span {
+    border-radius: 8px;
+    background: #fff;
+    border: 1px solid var(--ink-100);
+    min-height: 3.5rem;
+  }
+
+  .screenshot-card--plan .screenshot-screen {
+    background: #fff;
+  }
+
+  .screenshot-card--garden .screenshot-screen {
+    background: var(--brand-50);
+  }
+
+  .screenshots-note {
+    text-align: center;
+    margin: 2.5rem 0 0;
+    color: var(--ink-500);
+    font-size: 0.875rem;
+  }
+</style>

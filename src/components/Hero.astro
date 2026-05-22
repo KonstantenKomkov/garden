@@ -1,0 +1,200 @@
+---
+import { site } from '../site';
+
+const base = import.meta.env.BASE_URL;
+---
+
+<section class="hero" id="top">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <p class="hero-badge">Скоро в RuStore и App Store</p>
+      <img
+        class="hero-wordmark"
+        src={`${base}images/sad_wordmark.png`}
+        alt={site.name}
+        width="220"
+        height="72"
+      />
+      <p class="hero-tagline">{site.tagline}</p>
+      <p class="hero-lead">{site.description}</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href={`${base}#features`}>Узнать больше</a>
+        <a class="btn btn-secondary" href={`mailto:${site.supportEmail}`}>Написать в поддержку</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="phone-frame">
+        <div class="phone-screen phone-screen--hero">
+          <img src={`${base}images/app-icon.png`} alt="" class="phone-app-icon" width="80" height="80" />
+          <p class="phone-app-name brand-wordmark">{site.name}</p>
+          <p class="phone-app-tagline">{site.tagline}</p>
+          <div class="phone-tabs" aria-hidden="true">
+            <span class="active">План</span>
+            <span>{site.name}</span>
+            <span>Растения</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding: 4.5rem 0 5rem;
+    color: #fff;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, var(--hero-top) 0%, var(--hero-mid) 45%, var(--hero-bottom) 100%);
+  }
+
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 85% 20%, rgba(168, 213, 181, 0.25), transparent 55%),
+      radial-gradient(ellipse 50% 40% at 10% 80%, rgba(224, 138, 60, 0.12), transparent 50%);
+  }
+
+  .hero-inner {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    margin: 0 0 1.25rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .hero-wordmark {
+    filter: brightness(0) invert(1);
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-tagline {
+    margin: 0 0 1rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  .hero-lead {
+    max-width: 32rem;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.88);
+    margin-bottom: 1.75rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .hero .btn-secondary {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.25);
+    box-shadow: none;
+  }
+
+  .hero .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.18);
+    color: #fff;
+  }
+
+  .phone-frame {
+    margin-inline: auto;
+    width: min(100%, 280px);
+    padding: 0.75rem;
+    border-radius: 2.25rem;
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+  }
+
+  .phone-screen {
+    border-radius: 1.75rem;
+    min-height: 420px;
+    padding: 2.5rem 1.5rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: #fff;
+    color: var(--ink-900);
+  }
+
+  .phone-app-icon {
+    border-radius: 1.25rem;
+    margin-bottom: 1rem;
+    box-shadow: var(--shadow-card);
+  }
+
+  .phone-app-name {
+    font-size: 2rem;
+    color: var(--ink-900);
+    margin: 0 0 0.25rem;
+  }
+
+  .phone-app-tagline {
+    margin: 0 0 auto;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-500);
+  }
+
+  .phone-tabs {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--ink-100);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--ink-400);
+  }
+
+  .phone-tabs .active {
+    color: var(--brand-600);
+  }
+
+  @media (max-width: 900px) {
+    .hero-inner {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+
+    .hero-lead {
+      margin-inline: auto;
+    }
+
+    .hero-actions {
+      justify-content: center;
+    }
+
+    .hero-visual {
+      order: -1;
+    }
+  }
+</style>

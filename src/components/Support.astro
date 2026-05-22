@@ -1,0 +1,99 @@
+---
+import { site } from '../site';
+---
+
+<section class="section support" id="support">
+  <div class="container support-inner">
+    <div class="support-copy">
+      <p class="section-eyebrow">Поддержка</p>
+      <h2 class="section-title">Есть вопросы?</h2>
+      <p>
+        Приложение пока в разработке и ещё не опубликовано в магазинах. Если у вас есть
+        предложения, вы нашли ошибку или хотите узнать о бета-тестировании — напишите нам.
+      </p>
+      <a class="btn btn-primary" href={`mailto:${site.supportEmail}`}>
+        {site.supportEmail}
+      </a>
+    </div>
+    <aside class="support-card">
+      <h3>Перед публикацией</h3>
+      <ul>
+        <li>Идентификатор: <code>{site.packageId}</code></li>
+        <li>Данные садов и задач хранятся на устройстве</li>
+        <li>Геолокация — только при создании участка</li>
+      </ul>
+      <p class="support-links">
+        <a href={`${import.meta.env.BASE_URL}privacy/`}>Политика конфиденциальности</a>
+        ·
+        <a href={`${import.meta.env.BASE_URL}terms/`}>Соглашение</a>
+      </p>
+    </aside>
+  </div>
+</section>
+
+<style>
+  .support {
+    background: linear-gradient(180deg, #fff 0%, var(--brand-50) 100%);
+  }
+
+  .support-inner {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .support-copy .section-title {
+    text-align: left;
+  }
+
+  .support-copy .section-eyebrow {
+    display: block;
+  }
+
+  .support-card {
+    background: #fff;
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--brand-100);
+  }
+
+  .support-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+
+  .support-card ul {
+    margin: 0 0 1.25rem;
+    padding-left: 1.1rem;
+    color: var(--ink-700);
+  }
+
+  .support-card li {
+    margin-bottom: 0.5rem;
+  }
+
+  .support-card code {
+    font-size: 0.85em;
+    background: var(--surface-sunken);
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+  }
+
+  .support-links {
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .support-links a {
+    text-decoration: none;
+  }
+
+  @media (max-width: 768px) {
+    .support-inner {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
