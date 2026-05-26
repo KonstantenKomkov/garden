@@ -1,13 +1,23 @@
 ---
 import { features } from '../site';
+import PlanIcon from '../assets/icons/plan.svg';
+import WeatherIcon from '../assets/icons/weather.svg';
 
-const icons: Record<string, string> = {
+type IconKey = (typeof features)[number]['icon'];
+
+// Иконки из дизайн-системы (assets/icons/<dir>/<name>.svg), рендерятся как Astro-компоненты.
+const iconComponents: Partial<Record<IconKey, typeof PlanIcon>> = {
+  plan: PlanIcon,
+  weather: WeatherIcon,
+};
+
+// Резервные inline-paths для иконок, у которых пока нет SVG из дизайн-системы.
+const iconPaths: Partial<Record<IconKey, string>> = {
   garden: 'M12 3C9 7 5 8 5 13a7 7 0 0 0 14 0c0-5-4-6-7-10z',
-  beds: 'M4 20h16M6 16h12M8 12h8M10 8h4',
-  plan: 'M5 5h14v14H5z M9 3v4 M15 3v4 M5 11h14',
-  plants: 'M12 22V12M8 14c-4-1-5-5-2-7s7-1 6 4M16 14c4-1 5-5 2-7s-7-1-6 4',
-  weather: 'M17.5 19a4.5 4.5 0 0 0 0-9 5.5 5.5 0 0 0-10.8 1.5A3.5 3.5 0 0 0 6.5 19',
-  offline: 'M12 2v4M4.93 4.93l2.83 2.83M2 12h4M4.93 19.07l2.83-2.83M12 18v4M19.07 19.07l-2.83-2.83M18 12h4M19.07 4.93l-2.83 2.83',
+  beds: 'M4 20h16 M6 16h12 M8 12h8 M10 8h4',
+  plants: 'M12 22V12 M8 14c-4-1-5-5-2-7s7-1 6 4 M16 14c4-1 5-5 2-7s-7-1-6 4',
+  offline:
+    'M12 2v4 M4.93 4.93l2.83 2.83 M2 12h4 M4.93 19.07l2.83-2.83 M12 18v4 M19.07 19.07l-2.83-2.83 M18 12h4 M19.07 4.93l-2.83 2.83',
 };
 ---
 
@@ -22,17 +32,25 @@ const icons: Record<string, string> = {
       </p>
     </header>
     <ul class="features-grid">
-      {features.map((feature) => (
-        <li class="feature-card">
-          <div class="feature-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-              <path d={icons[feature.icon]} />
-            </svg>
-          </div>
-          <h3>{feature.title}</h3>
-          <p>{feature.description}</p>
-        </li>
-      ))}
+      {features.map((feature) => {
+        const IconComponent = iconComponents[feature.icon];
+        const path = iconPaths[feature.icon];
+        return (
+          <li class="feature-card">
+            <div class="feature-icon" aria-hidden="true">
+              {IconComponent ? (
+                <IconComponent />
+              ) : (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d={path} />
+                </svg>
+              )}
+            </div>
+            <h3>{feature.title}</h3>
+            <p>{feature.description}</p>
+          </li>
+        );
+      })}
     </ul>
   </div>
 </section>
@@ -52,10 +70,10 @@ const icons: Record<string, string> = {
   }
 
   .feature-card {
-    background: #fff;
-    border-radius: var(--radius-md);
+    background: var(--surface-card);
+    border-radius: var(--radius-lg);
     padding: 1.5rem;
-    box-shadow: var(--shadow-card);
+    box-shadow: var(--shadow-2);
     border: 1px solid var(--ink-100);
   }
 
@@ -73,7 +91,7 @@ const icons: Record<string, string> = {
   .feature-icon {
     width: 2.75rem;
     height: 2.75rem;
-    border-radius: 12px;
+    border-radius: var(--radius-md);
     display: grid;
     place-items: center;
     background: var(--brand-100);

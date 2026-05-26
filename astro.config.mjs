@@ -6,6 +6,9 @@ export default defineConfig({
   site: 'https://konstantenkomkov.github.io',
   base: '/garden/',
   trailingSlash: 'always',
+  prefetch: {
+    defaultStrategy: 'hover',
+  },
   build: {
     format: 'directory',
   },

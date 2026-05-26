@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'Manrope';
-  src: url('../assets/fonts/Manrope-VariableFont_wght.ttf') format('truetype');
+  src: url('../assets/fonts/Manrope-VariableFont_wght.woff2') format('woff2-variations');
   font-weight: 200 800;
   font-style: normal;
   font-display: swap;
@@ -8,34 +8,81 @@
 
 @font-face {
   font-family: 'Philosopher';
-  src: url('../assets/fonts/Philosopher-Italic.ttf') format('truetype');
+  src: url('../assets/fonts/Philosopher-Italic.woff2') format('woff2');
   font-weight: 400;
   font-style: italic;
   font-display: swap;
 }
 
 :root {
+  /* Бренд (зелёный, лесной) */
   --brand-700: #1e3f26;
   --brand-600: #2f5d3a;
   --brand-500: #3f7a4d;
   --brand-400: #5c9a6b;
+  --brand-300: #87b894;
+  --brand-200: #b6d4bd;
   --brand-100: #dcede2;
   --brand-50: #f1f8f3;
+
+  /* Акцент (урожай, охра) */
+  --harvest-700: #8b4a14;
+  --harvest-600: #b5651f;
   --harvest-500: #e08a3c;
+  --harvest-400: #eca45c;
+  --harvest-300: #f1b97d;
+  --harvest-200: #f7d6ab;
   --harvest-100: #fbe8d2;
+
+  /* Поверхности */
+  --surface-paper: #ffffff;
+  --surface-card: #ffffff;
+  --surface-sunken: #f4f6f4;
+  --surface-overlay: rgba(26, 31, 27, 0.42);
+
+  /* Нейтралы */
   --ink-900: #1a1f1b;
+  --ink-800: #2a302c;
   --ink-700: #3d453f;
   --ink-500: #6b7468;
+  --ink-400: #8c9489;
+  --ink-300: #b5bcb2;
   --ink-200: #d7dcd3;
   --ink-100: #ecefe9;
-  --surface-sunken: #f4f6f4;
+
+  /* Hero — локальный градиент лендинга */
   --hero-top: #173321;
   --hero-mid: #245036;
   --hero-bottom: #3f7a4d;
+
+  /* Радиусы */
+  --radius-xs: 6px;
   --radius-sm: 10px;
-  --radius-md: 16px;
-  --radius-lg: 24px;
-  --shadow-card: 0 12px 40px rgba(26, 31, 27, 0.08);
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-pill: 999px;
+
+  /* Тени */
+  --shadow-1: 0 1px 3px rgba(26, 31, 27, 0.08), 0 1px 2px rgba(26, 31, 27, 0.04);
+  --shadow-2: 0 4px 12px rgba(26, 31, 27, 0.08), 0 2px 4px rgba(26, 31, 27, 0.05);
+  --shadow-3: 0 12px 28px rgba(26, 31, 27, 0.1), 0 4px 8px rgba(26, 31, 27, 0.06);
+  --shadow-pop: 0 24px 48px rgba(26, 31, 27, 0.18);
+
+  /* Letter-spacing для заголовков */
+  --letter-display: -0.02em;
+  --letter-h1: -0.015em;
+  --letter-h2: -0.01em;
+  --letter-caption: 0.02em;
+
+  /* Анимация */
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-tap: cubic-bezier(0.4, 0, 0.6, 1);
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 400ms;
+
+  /* Лейаут */
   --max-width: 1120px;
   --font-sans: 'Manrope', system-ui, sans-serif;
   --font-display: 'Philosopher', Georgia, serif;
@@ -47,8 +94,10 @@
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 body {
@@ -82,6 +131,11 @@ h2,
 h3 {
   line-height: 1.2;
   margin: 0 0 0.5em;
+  letter-spacing: var(--letter-h2);
+}
+
+h1 {
+  letter-spacing: var(--letter-h1);
 }
 
 p {
@@ -123,11 +177,30 @@ p {
   font-weight: 600;
   text-decoration: none;
   border: 1px solid transparent;
-  transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
 }
 
-.btn:hover {
-  transform: translateY(-1px);
+@media (prefers-reduced-motion: no-preference) {
+  .btn {
+    transition:
+      transform var(--duration-fast) var(--ease-tap),
+      background var(--duration-fast) var(--ease-out),
+      color var(--duration-fast) var(--ease-out);
+  }
+
+  .btn:hover {
+    transform: translateY(-1px);
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--brand-600);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.hero :focus-visible,
+.header :focus-visible {
+  outline-color: #fff;
 }
 
 .btn-primary {
@@ -143,7 +216,7 @@ p {
 .btn-secondary {
   background: #fff;
   color: var(--brand-600);
-  border-color: var(--brand-200, var(--brand-100));
+  border-color: var(--brand-200);
   box-shadow: inset 0 0 0 1px var(--brand-100);
 }
 
@@ -175,6 +248,7 @@ p {
 .section-title {
   font-size: clamp(1.75rem, 4vw, 2.5rem);
   font-weight: 700;
+  letter-spacing: var(--letter-display);
 }
 
 .section-lead {

@@ -25,8 +25,8 @@ jobs:
         with:
           node-version: 22
           cache: npm
-      - run: npm ci
-      - run: npm run build
+      - run: make install
+      - run: make build
       - name: Publish dist → gh-pages
         uses: peaceiris/actions-gh-pages@v4
         with:

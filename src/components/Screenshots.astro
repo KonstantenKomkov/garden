@@ -86,13 +86,13 @@ import { screenshots } from '../site';
     margin-inline: auto;
     width: 200px;
     padding: 0.5rem;
-    border-radius: 1.5rem;
+    border-radius: var(--radius-xl);
     background: var(--ink-900);
-    box-shadow: var(--shadow-card);
+    box-shadow: var(--shadow-2);
   }
 
   .screenshot-screen {
-    border-radius: 1.15rem;
+    border-radius: var(--radius-lg);
     background: var(--surface-sunken);
     min-height: 320px;
     padding: 1rem;
@@ -110,7 +110,7 @@ import { screenshots } from '../site';
     color: var(--brand-600);
     background: var(--brand-100);
     padding: 0.25rem 0.65rem;
-    border-radius: 999px;
+    border-radius: var(--radius-pill);
   }
 
   .screenshot-mock {
@@ -139,7 +139,7 @@ import { screenshots } from '../site';
 
   .mock-hero {
     height: 5rem;
-    border-radius: 12px;
+    border-radius: var(--radius-md);
     background: linear-gradient(160deg, var(--hero-top), var(--hero-bottom));
   }
 
@@ -152,7 +152,7 @@ import { screenshots } from '../site';
 
   .mock-search {
     height: 2rem;
-    border-radius: 999px;
+    border-radius: var(--radius-pill);
     background: #fff;
     border: 1px solid var(--ink-100);
   }
