@@ -11,9 +11,8 @@ const nav = [
 
 <header class="header">
   <div class="container header-inner">
-    <a class="logo" href={base}>
-      <img src={`${base}images/app-icon.png`} alt="" width="36" height="36" />
-      <span class="brand-wordmark">{site.name}</span>
+    <a class="logo" href={base} aria-label={`${site.name} — на главную`}>
+      <img src={`${base}images/app-icon.png`} alt={site.name} width="40" height="40" />
     </a>
     <nav class="nav" aria-label="Основная навигация">
       {nav.map((item) => (
@@ -44,10 +43,7 @@ const nav = [
   .logo {
     display: inline-flex;
     align-items: center;
-    gap: 0.65rem;
     text-decoration: none;
-    color: var(--ink-900);
-    font-size: 1.35rem;
     margin-right: auto;
   }
 
