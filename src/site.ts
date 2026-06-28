@@ -10,7 +10,7 @@ export const site = {
   },
   url: 'https://konstantenkomkov.github.io/garden/',
   legalUpdated: '23 мая 2026',
-  guideUpdated: '8 июня 2026',
+  guideUpdated: '28 июня 2026',
 } as const;
 
 export const features = [
