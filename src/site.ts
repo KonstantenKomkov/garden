@@ -5,8 +5,12 @@ export const site = {
     'Мобильное приложение для планирования сада и задач: теплицы, грядки, справочник растений и прогноз погоды.',
   supportEmail: 'supportgardenrussia@gmail.com',
   packageId: 'ru.farming.app',
+  stores: {
+    rustore: 'https://www.rustore.ru/catalog/app/ru.farming.app',
+  },
   url: 'https://konstantenkomkov.github.io/garden/',
   legalUpdated: '23 мая 2026',
+  guideUpdated: '8 июня 2026',
 } as const;
 
 export const features = [
@@ -52,16 +56,16 @@ export const screenshots = [
   {
     title: 'План',
     caption: 'Календарь задач и посадок на каждый день',
-    theme: 'plan',
+    image: 'images/screenshots/plan.png',
   },
   {
     title: 'Сад',
     caption: 'Грядки, теплицы и коллекция посаженных культур',
-    theme: 'garden',
+    image: 'images/screenshots/garden.png',
   },
   {
     title: 'Растения',
     caption: 'Справочник видов с фото и быстрым добавлением в сад',
-    theme: 'plants',
+    image: 'images/screenshots/plants.png',
   },
 ] as const;

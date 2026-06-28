@@ -8,7 +8,12 @@ const base = import.meta.env.BASE_URL;
   <div class="hero-bg" aria-hidden="true"></div>
   <div class="container hero-inner">
     <div class="hero-copy">
-      <p class="hero-badge">Скоро в RuStore и App Store</p>
+      <p class="hero-badges">
+        <a class="hero-badge hero-badge--link" href={site.stores.rustore} rel="noopener noreferrer">
+          Скачать в RuStore
+        </a>
+        <span class="hero-badge">Скоро в App Store</span>
+      </p>
       <img
         class="hero-wordmark"
         src={`${base}images/sad_wordmark.png`}
@@ -24,18 +29,15 @@ const base = import.meta.env.BASE_URL;
       </div>
     </div>
     <div class="hero-visual">
-      <div class="phone-frame">
-        <div class="phone-screen phone-screen--hero">
-          <img src={`${base}images/app-icon.png`} alt="" class="phone-app-icon" width="80" height="80" />
-          <p class="phone-app-name brand-wordmark">{site.name}</p>
-          <p class="phone-app-tagline">{site.tagline}</p>
-          <div class="phone-tabs" aria-hidden="true">
-            <span class="active">План</span>
-            <span>{site.name}</span>
-            <span>Растения</span>
-          </div>
-        </div>
-      </div>
+      <img
+        class="hero-phone"
+        src={`${base}images/screenshots/hero.png`}
+        alt="Экран создания сада в приложении"
+        width="280"
+        height="536"
+        loading="eager"
+        decoding="async"
+      />
     </div>
   </div>
 </section>
@@ -71,9 +73,15 @@ const base = import.meta.env.BASE_URL;
     align-items: center;
   }
 
+  .hero-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0 0 1.25rem;
+  }
+
   .hero-badge {
     display: inline-block;
-    margin: 0 0 1.25rem;
     padding: 0.35rem 0.85rem;
     border-radius: var(--radius-pill);
     background: rgba(255, 255, 255, 0.12);
@@ -81,6 +89,17 @@ const base = import.meta.env.BASE_URL;
     font-weight: 700;
     letter-spacing: 0.04em;
     text-transform: uppercase;
+  }
+
+  .hero-badge--link {
+    color: inherit;
+    text-decoration: none;
+    transition: background 0.15s ease;
+  }
+
+  .hero-badge--link:hover {
+    background: rgba(255, 255, 255, 0.22);
+    color: #fff;
   }
 
   .hero-wordmark {
@@ -122,61 +141,16 @@ const base = import.meta.env.BASE_URL;
     color: #fff;
   }
 
-  .phone-frame {
+  .hero-visual {
     margin-inline: auto;
     width: min(100%, 280px);
-    padding: 0.75rem;
-    border-radius: 2.25rem;
-    background: rgba(255, 255, 255, 0.12);
-    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
   }
 
-  .phone-screen {
-    border-radius: 1.75rem;
-    min-height: 420px;
-    padding: 2.5rem 1.5rem 1.25rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    background: #fff;
-    color: var(--ink-900);
-  }
-
-  .phone-app-icon {
-    border-radius: var(--radius-xl);
-    margin-bottom: 1rem;
-    box-shadow: var(--shadow-2);
-  }
-
-  .phone-app-name {
-    font-size: 2rem;
-    color: var(--ink-900);
-    margin: 0 0 0.25rem;
-  }
-
-  .phone-app-tagline {
-    margin: 0 0 auto;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--ink-500);
-  }
-
-  .phone-tabs {
-    display: flex;
+  .hero-phone {
+    display: block;
     width: 100%;
-    justify-content: space-around;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--ink-100);
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: var(--ink-400);
-  }
-
-  .phone-tabs .active {
-    color: var(--brand-600);
+    height: auto;
+    filter: drop-shadow(0 24px 60px rgba(0, 0, 0, 0.35));
   }
 
   @media (max-width: 900px) {
@@ -190,6 +164,10 @@ const base = import.meta.env.BASE_URL;
     }
 
     .hero-actions {
+      justify-content: center;
+    }
+
+    .hero-badges {
       justify-content: center;
     }
 

@@ -11,13 +11,15 @@ const year = new Date().getFullYear();
       <span class="brand-wordmark footer-wordmark">{site.name}</span>
       <p class="footer-tagline">{site.tagline}</p>
     </div>
-    <nav class="footer-nav" aria-label="Юридические документы">
+    <nav class="footer-nav" aria-label="Навигация по сайту">
+      <a href={`${base}guide/`}>Руководство пользователя</a>
       <a href={`${base}privacy/`}>Политика конфиденциальности</a>
       <a href={`${base}terms/`}>Пользовательское соглашение</a>
+      <a href={site.stores.rustore} rel="noopener noreferrer">RuStore</a>
       <a href={`mailto:${site.supportEmail}`}>{site.supportEmail}</a>
     </nav>
     <p class="footer-copy">
-      © {year} «{site.name}». Приложение в разработке, ещё не опубликовано в магазинах.
+      © {year} «{site.name}». Доступно в RuStore, скоро в App Store.
     </p>
   </div>
 </footer>

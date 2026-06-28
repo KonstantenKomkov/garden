@@ -1,5 +1,7 @@
 ---
 import { screenshots } from '../site';
+
+const base = import.meta.env.BASE_URL;
 ---
 
 <section class="section screenshots" id="screenshots">
@@ -14,36 +16,16 @@ import { screenshots } from '../site';
     <ul class="screenshots-grid">
       {screenshots.map((shot) => (
         <li>
-          <article class={`screenshot-card screenshot-card--${shot.theme}`}>
-            <div class="screenshot-phone" aria-hidden="true">
-              <div class="screenshot-screen">
-                <span class="screenshot-tab">{shot.title}</span>
-                <div class="screenshot-mock">
-                  {shot.theme === 'plan' && (
-                    <>
-                      <div class="mock-row mock-row--accent" />
-                      <div class="mock-row" />
-                      <div class="mock-row" />
-                      <div class="mock-row mock-row--short" />
-                    </>
-                  )}
-                  {shot.theme === 'garden' && (
-                    <>
-                      <div class="mock-hero" />
-                      <div class="mock-chip" />
-                      <div class="mock-chip" />
-                    </>
-                  )}
-                  {shot.theme === 'plants' && (
-                    <>
-                      <div class="mock-search" />
-                      <div class="mock-grid">
-                        <span /><span /><span /><span />
-                      </div>
-                    </>
-                  )}
-                </div>
-              </div>
+          <article class="screenshot-card">
+            <div class="screenshot-visual">
+              <img
+                src={`${base}${shot.image}`}
+                alt={`Экран раздела «${shot.title}»`}
+                width="260"
+                height="498"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
             <h3>{shot.title}</h3>
             <p>{shot.caption}</p>
@@ -51,9 +33,6 @@ import { screenshots } from '../site';
         </li>
       ))}
     </ul>
-    <p class="screenshots-note">
-      Скриншоты из макетов интерфейса. После публикации в сторах здесь появятся реальные снимки экранов.
-    </p>
   </div>
 </section>
 
@@ -82,107 +61,15 @@ import { screenshots } from '../site';
     font-size: 0.95rem;
   }
 
-  .screenshot-phone {
+  .screenshot-visual {
     margin-inline: auto;
-    width: 200px;
-    padding: 0.5rem;
-    border-radius: var(--radius-xl);
-    background: var(--ink-900);
-    box-shadow: var(--shadow-2);
+    width: min(100%, 260px);
   }
 
-  .screenshot-screen {
-    border-radius: var(--radius-lg);
-    background: var(--surface-sunken);
-    min-height: 320px;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .screenshot-tab {
-    align-self: center;
-    font-size: 0.7rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--brand-600);
-    background: var(--brand-100);
-    padding: 0.25rem 0.65rem;
-    border-radius: var(--radius-pill);
-  }
-
-  .screenshot-mock {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    padding-top: 0.5rem;
-  }
-
-  .mock-row {
-    height: 2.5rem;
-    border-radius: 8px;
-    background: #fff;
-    border: 1px solid var(--ink-100);
-  }
-
-  .mock-row--accent {
-    background: var(--brand-100);
-    border-color: var(--brand-200, var(--brand-100));
-  }
-
-  .mock-row--short {
-    width: 65%;
-  }
-
-  .mock-hero {
-    height: 5rem;
-    border-radius: var(--radius-md);
-    background: linear-gradient(160deg, var(--hero-top), var(--hero-bottom));
-  }
-
-  .mock-chip {
-    height: 2rem;
-    border-radius: 8px;
-    background: #fff;
-    border: 1px solid var(--ink-100);
-  }
-
-  .mock-search {
-    height: 2rem;
-    border-radius: var(--radius-pill);
-    background: #fff;
-    border: 1px solid var(--ink-100);
-  }
-
-  .mock-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.5rem;
-    flex: 1;
-  }
-
-  .mock-grid span {
-    border-radius: 8px;
-    background: #fff;
-    border: 1px solid var(--ink-100);
-    min-height: 3.5rem;
-  }
-
-  .screenshot-card--plan .screenshot-screen {
-    background: #fff;
-  }
-
-  .screenshot-card--garden .screenshot-screen {
-    background: var(--brand-50);
-  }
-
-  .screenshots-note {
-    text-align: center;
-    margin: 2.5rem 0 0;
-    color: var(--ink-500);
-    font-size: 0.875rem;
+  .screenshot-visual img {
+    display: block;
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 20px 40px rgba(26, 31, 27, 0.18));
   }
 </style>

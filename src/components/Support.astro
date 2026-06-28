@@ -8,16 +8,20 @@ import { site } from '../site';
       <p class="section-eyebrow">Поддержка</p>
       <h2 class="section-title">Есть вопросы?</h2>
       <p>
-        Приложение в разработке и ещё не опубликовано в магазинах. Если у вас есть
-        предложения, вы нашли ошибку или хотите узнать о бета-тестировании — напишите нам.
+        Приложение уже доступно в{' '}
+        <a href={site.stores.rustore} rel="noopener noreferrer">RuStore</a>. Скоро появится в App
+        Store. Если у вас есть предложения, вы нашли ошибку или вопрос по работе — напишите нам.
       </p>
       <a class="btn btn-primary" href={`mailto:${site.supportEmail}`}>
         {site.supportEmail}
       </a>
     </div>
     <aside class="support-card">
-      <h3>Перед публикацией</h3>
+      <h3>О приложении</h3>
       <ul>
+        <li>
+          <a href={site.stores.rustore} rel="noopener noreferrer">Скачать в RuStore</a>
+        </li>
         <li>Идентификатор: <code>{site.packageId}</code></li>
         <li>Данные садов и задач хранятся на устройстве</li>
         <li>Геолокация — только при создании участка</li>
