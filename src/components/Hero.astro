@@ -29,15 +29,19 @@ const base = import.meta.env.BASE_URL;
       </div>
     </div>
     <div class="hero-visual">
-      <img
-        class="hero-phone"
-        src={`${base}images/screenshots/hero.png`}
-        alt="Экран создания сада в приложении"
-        width="280"
-        height="536"
-        loading="eager"
-        decoding="async"
-      />
+      <picture>
+        <source srcset={`${base}images/screenshots/hero.webp`} type="image/webp" />
+        <img
+          class="hero-phone"
+          src={`${base}images/screenshots/hero.png`}
+          alt="Экран создания сада в приложении"
+          width="280"
+          height="536"
+          loading="eager"
+          decoding="sync"
+          fetchpriority="high"
+        />
+      </picture>
     </div>
   </div>
 </section>
@@ -144,6 +148,10 @@ const base = import.meta.env.BASE_URL;
   .hero-visual {
     margin-inline: auto;
     width: min(100%, 280px);
+  }
+
+  .hero-visual picture {
+    display: block;
   }
 
   .hero-phone {
