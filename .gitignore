@@ -17,6 +17,9 @@ pnpm-debug.log*
 .env
 .env.production
 
+# SSH-ключ для деплоя на prod (тот же, что у farming_backend)
+timeweb_key
+
 # macOS-specific files
 .DS_Store
 

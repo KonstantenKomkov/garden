@@ -8,7 +8,7 @@ export const site = {
   stores: {
     rustore: 'https://www.rustore.ru/catalog/app/ru.farming.app',
   },
-  url: 'https://konstantenkomkov.github.io/garden/',
+  url: 'https://garden-app.ru/',
   legalUpdated: '23 мая 2026',
   guideUpdated: '28 июня 2026',
 } as const;

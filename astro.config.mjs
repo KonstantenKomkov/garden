@@ -3,8 +3,7 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://konstantenkomkov.github.io',
-  base: '/garden/',
+  site: 'https://garden-app.ru',
   trailingSlash: 'always',
   prefetch: {
     defaultStrategy: 'hover',

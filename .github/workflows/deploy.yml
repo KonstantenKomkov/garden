@@ -1,19 +1,16 @@
-# Публикует сборку в ветку gh-pages.
-# Настройки: Settings → Pages → Source: Deploy from a branch → gh-pages → / (root)
-# Custom domain — оставить пустым.
+# Публикует сборку на Timeweb VPS (garden-app.ru).
+# Secrets: DEPLOY_SSH_KEY, DEPLOY_HOST, DEPLOY_USER.
+# Первичная настройка nginx и каталога — documents/deployment.md.
 
-name: Deploy to GitHub Pages
+name: Deploy to prod
 
 on:
   push:
     branches: [main]
   workflow_dispatch:
 
-permissions:
-  contents: write
-
 concurrency:
-  group: pages
+  group: landing-prod
   cancel-in-progress: true
 
 jobs:
@@ -21,15 +18,40 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+
       - uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: npm
+
       - run: make install
       - run: make build
-      - name: Publish dist → gh-pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-          publish_branch: gh-pages
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H "${{ secrets.DEPLOY_HOST }}" >> ~/.ssh/known_hosts
+
+      - name: Publish dist → VPS
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+        run: |
+          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=yes \
+            "${DEPLOY_USER}@${DEPLOY_HOST}" "mkdir -p /var/www/garden"
+          rsync -avzr --delete \
+            -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=yes" \
+            dist/ "${DEPLOY_USER}@${DEPLOY_HOST}:/var/www/garden/"
+
+      - name: Verify landing pages
+        run: |
+          for path in / /privacy/ /terms/; do
+            code=$(curl -s -o /dev/null -w "%{http_code}" "https://garden-app.ru${path}")
+            if [ "$code" != "200" ]; then
+              echo "https://garden-app.ru${path} returned HTTP $code" >&2
+              exit 1
+            fi
+            echo "OK https://garden-app.ru${path} (HTTP $code)"
+          done
