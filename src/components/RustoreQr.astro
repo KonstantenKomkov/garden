@@ -1,26 +1,14 @@
 ---
-import QRCode from 'qrcode';
 import { site } from '../site';
 
 interface Props {
   size?: number;
   caption?: string;
   class?: string;
-  simple?: boolean;
 }
 
-const { size = 136, caption, class: className, simple = false } = Astro.props;
-
-const renderSize = simple ? Math.round(size / 4) : size * 2;
-
-const qrBackground = '#f4f6f4';
-
-const qrDataUrl = await QRCode.toDataURL(site.stores.rustore, {
-  margin: simple ? 0 : 1,
-  width: renderSize,
-  errorCorrectionLevel: simple ? 'L' : 'M',
-  color: { dark: '#1a1f1b', light: qrBackground },
-});
+const { size = 136, caption, class: className } = Astro.props;
+const base = import.meta.env.BASE_URL;
 ---
 
 <figure class:list={['rustore-qr', className]}>
@@ -31,8 +19,8 @@ const qrDataUrl = await QRCode.toDataURL(site.stores.rustore, {
     aria-label="Скачать в RuStore"
   >
     <img
-      class:list={['rustore-qr__image', simple && 'rustore-qr__image--simple']}
-      src={qrDataUrl}
+      class="rustore-qr__image"
+      src={`${base}images/farming_rustore.png`}
       alt=""
       width={size}
       height={size}
@@ -70,11 +58,6 @@ const qrDataUrl = await QRCode.toDataURL(site.stores.rustore, {
 
   .rustore-qr__image {
     display: block;
-  }
-
-  .rustore-qr__image--simple {
-    image-rendering: pixelated;
-    image-rendering: crisp-edges;
   }
 
   .rustore-qr__caption {
