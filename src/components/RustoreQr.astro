@@ -1,0 +1,87 @@
+---
+import QRCode from 'qrcode';
+import { site } from '../site';
+
+interface Props {
+  size?: number;
+  caption?: string;
+  class?: string;
+  simple?: boolean;
+}
+
+const { size = 136, caption, class: className, simple = false } = Astro.props;
+
+const renderSize = simple ? Math.round(size / 4) : size * 2;
+
+const qrBackground = '#f4f6f4';
+
+const qrDataUrl = await QRCode.toDataURL(site.stores.rustore, {
+  margin: simple ? 0 : 1,
+  width: renderSize,
+  errorCorrectionLevel: simple ? 'L' : 'M',
+  color: { dark: '#1a1f1b', light: qrBackground },
+});
+---
+
+<figure class:list={['rustore-qr', className]}>
+  <a
+    class="rustore-qr__link"
+    href={site.stores.rustore}
+    rel="noopener noreferrer"
+    aria-label="Скачать в RuStore"
+  >
+    <img
+      class:list={['rustore-qr__image', simple && 'rustore-qr__image--simple']}
+      src={qrDataUrl}
+      alt=""
+      width={size}
+      height={size}
+      decoding="async"
+    />
+  </a>
+  {caption && <figcaption class="rustore-qr__caption">{caption}</figcaption>}
+</figure>
+
+<style>
+  .rustore-qr {
+    margin: 0;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .rustore-qr__link {
+    display: block;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    line-height: 0;
+    transition: transform var(--duration-fast) var(--ease-out);
+  }
+
+  .rustore-qr__link:hover {
+    transform: scale(1.02);
+  }
+
+  .rustore-qr__link:focus-visible {
+    outline: 2px solid var(--brand-400);
+    outline-offset: 3px;
+  }
+
+  .rustore-qr__image {
+    display: block;
+  }
+
+  .rustore-qr__image--simple {
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+  }
+
+  .rustore-qr__caption {
+    margin: 0;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.3;
+  }
+</style>
