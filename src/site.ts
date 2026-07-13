@@ -10,7 +10,7 @@ export const site = {
   },
   url: 'https://garden-app.ru/',
   legalUpdated: '23 мая 2026',
-  guideUpdated: '28 июня 2026',
+  guideUpdated: '13 июля 2026',
 } as const;
 
 export const features = [
