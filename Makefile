@@ -5,7 +5,7 @@ SSH_KEY ?= ./timeweb_key
 REMOTE_DIR ?= /var/www/garden
 SITE_URL ?= https://garden-app.ru
 
-.PHONY: help install dev build preview clean update-prod-landing setup-prod-nginx
+.PHONY: help install dev build preview clean generate-screenshots update-prod-landing setup-prod-nginx
 
 help:
 	@echo "Команды лендинга «Сад»:"
@@ -14,6 +14,7 @@ help:
 	@echo "  make build                — статическая сборка в dist/"
 	@echo "  make preview              — просмотр собранного сайта (сначала make build)"
 	@echo "  make clean                — удалить dist/ и кэш Astro"
+	@echo "  make generate-screenshots — собрать скриншоты лендинга в рамке телефона"
 	@echo "  make update-prod-landing  — сборка и деплой dist/ на prod (SSH + rsync)"
 	@echo "  make setup-prod-nginx     — настроить nginx для лендинга на prod (один раз)"
 	@echo ""
@@ -34,6 +35,9 @@ preview: build
 
 clean:
 	rm -rf dist .astro
+
+generate-screenshots:
+	python3 scripts/generate_screenshots.py
 
 update-prod-landing:
 	SSH_HOST=$(SSH_HOST) SSH_KEY=$(SSH_KEY) REMOTE_DIR=$(REMOTE_DIR) SITE_URL=$(SITE_URL) \
